@@ -1,12 +1,12 @@
 body {
     font-family: 'Labrada', serif;
-
     margin: 0;
     margin-left: auto;
     margin-right: auto;
 } 
+
 /* ------- MIDDLE MENU STYLES ------- */
-.menu-inner {
+.menu-item {
     display: flex;
     flex-wrap: wrap;
     height: auto;
@@ -24,11 +24,39 @@ body {
     padding: 10px 20px;
     margin: 10px;
 }
+.name-item {
+    font-size: larger;
+}
+.price-item {
+    font-size: 18px;
+  
+}
+/* ------------------------------------- */
+
+/* ------- BUTTON AND MISC STYLE ------- */
+.add-btn {
+    background-color: white;
+    border: 1px solid rgba(78, 76, 76, 0.5); 
+    color: #3C3C3C;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+
+    margin-left: auto;
+    height: 48px;
+    width: 50px;
+    border-radius: 50%;
+
+    margin-top: 70px;
+    margin-right: 70px;
+    
+}
 hr {
     max-width: 80%;
+    margin-top: 50px;
+
 }
-
-
 
 
 
