@@ -58,5 +58,38 @@ hr {
 
 }
 
+/* ----------- ORDER STYLES ----------- */
 
+#checkout-header {
+    text-align: center;
 
+}
+.item-added {
+    align-items: baseline;
+    display: flex;
+    padding-left: 60px;
+
+}
+
+.item-added-name {
+font-size: large;
+}
+
+.item-added-price {
+margin-right: 60px;
+font-size: larger;
+}
+
+.item-added-name, .remove-btn {
+    margin-right: 15px;
+} 
+
+.remove-btn {
+    margin-right: auto;
+    background-color: transparent;
+    border: none;
+    color: gray;
+  
+
+    
+}
