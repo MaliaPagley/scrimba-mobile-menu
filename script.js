@@ -1,18 +1,27 @@
 import {menuArray} from './data.js';
 const checkoutEl = document.getElementById('checkout')
+
 document.addEventListener('click', function(e) {
     if(/\d/.test(e.target.id)){
         handleAddBtn(e.target.id)
-    }
+    } if (e.target.dataset.remove) {
+            handleRemoveBtn(e.target.dataset.remove)
+     }
+    
 })
 
 let orderArr = []
 
-// function handleRemoveBtn(itemId) {
-//     const index = orderArr.indexOf(orderArr.filter(function(item) {
-//         return item.id == itemId
-//     })[0])
-// }
+function handleRemoveBtn(itemId) {
+    const index = orderArr.indexOf(orderArr.filter(function(item) {
+        return item.id == itemId
+    })[0])
+    if (index > -1) {
+        orderArr.splice(index, 1);
+    }
+    renderCheckout()
+}
+
 function handleAddBtn(itemId){
     const targetItem = menuArray.filter(function(item){
         return item.id == itemId
@@ -22,29 +31,36 @@ function handleAddBtn(itemId){
    console.log(orderArr)
 }
 
+function updateTotalPrice() {
+    return orderArr.reduce((a,b) => a + b.price, 0)
+}
 
 function getOrdersHtml() {
     let ordersHtml = ''
     orderArr.forEach(function (item){
         ordersHtml += `
-        <div class="checkout-items"> 
-            <span class="item-added"> 
-                <h4 class="item-added-name">${item.name}</h4>
-                <button class="remove-btn" data-remove="${item.id}">remove</button>
-                <h5 class="item-added-price">$${item.price}</h5>
-            </span>
-            
-        </div>
-        
-        `
+        <div class="checkout-item">
+        <span class="item-added">
+            <h4>${item.name}</h4>
+            <button class="remove-btn" data-remove="${item.id}">remove</button>
+        </span>
+        <h5>$${item.price}</h5>
+    </div>
+  `
     })
     return ordersHtml
 }
+
 
 function renderCheckout() {
     checkoutEl.innerHTML = `
         <h4 id="checkout-header">Your Order</h4>
         <div>${getOrdersHtml()}</div>
+        <hr id="hr-checkeout">
+        <div class="total">
+            <h4 id="total-price-text">Total Price:</h4>
+            <h5 id="total-price">$${updateTotalPrice()}</h5>
+        </div>
     `
     checkoutEl.style.display = 'block'
 }
@@ -62,7 +78,7 @@ function getMenuHtml() {
                 <p class="detail-item">${item.ingredients}</p>
                 <h5 class="price-item">$${item.price}</h5>
             </span>
-            <button class="add-btn" id="${item.id}">+</button>
+            <button class="add-btn " id="${item.id}">+</button>
         </div>
 
         <hr></hr> 
