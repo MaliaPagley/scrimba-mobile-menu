@@ -27,6 +27,25 @@
       <!-- ORDER ITEMS PUSHED HERE FROM JS-->
     </div>
 
+    <div class="modal-container" id="modal-container">
+      <div class="payment-modal">
+        <h4>Enter card details</h4>
+        <form id="form-el">
+          <input
+            type="text"
+            placeholder="Enter your name"
+            required
+            id="customer-name"
+          />
+          <input type="text" placeholder="Enter card number" required />
+          <input type="text" placeholder="Enter CVV" required />
+          <button class="pay-btn" id="pay-btn">Pay</button>
+        </form>
+      </div>
+    </div>
+    <div class="order-dertails" id="order-dertails">
+      Thanks, James! Your order is on its way!
+    </div>
     <script src="script.js" type="module"></script>
   </body>
 </html>

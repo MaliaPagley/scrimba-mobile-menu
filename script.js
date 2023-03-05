@@ -1,16 +1,49 @@
 import {menuArray} from './data.js';
 const checkoutEl = document.getElementById('checkout')
+const formEl = document.getElementById('form-el')
+const modalContainer = document.getElementById('modal-container')
+const customerName = document.getElementById('customer-name')
+const orderDertails = document.getElementById('order-dertails')
 
 document.addEventListener('click', function(e) {
     if(/\d/.test(e.target.id)){
         handleAddBtn(e.target.id)
     } if (e.target.dataset.remove) {
             handleRemoveBtn(e.target.dataset.remove)
+     } 
+     
+     if(e.target.id == 'purchase-btn') {
+        handlePurchaseBtn(e.target.id)
+     } if(e.target === modalContainer) {
+        modalConainer.style.display = 'none'
      }
     
 })
 
+formEl.addEventListener('submit',function(e){
+    e.preventDefault()
+    renderOrderDetails()
+    formEl.reset()
+})
+
 let orderArr = []
+
+function renderOrderDetails(){
+   
+    modalContainer.style.display = 'none'
+    checkoutEl.style.display = 'none'
+    orderDertails.innerHTML = `
+    Thanks, ${customerName.value}! Your order is on its way!
+    `
+    orderDertails.style.display = "block"
+    orderArr = []
+} 
+
+function handlePurchaseBtn(btnId){
+    if(orderArr.length) {
+        modalContainer.style.display = 'flex'
+    }
+}
 
 function handleRemoveBtn(itemId) {
     const index = orderArr.indexOf(orderArr.filter(function(item) {
@@ -28,7 +61,7 @@ function handleAddBtn(itemId){
     })[0]
    orderArr.push(targetItem)
    renderCheckout()
-   console.log(orderArr)
+   updateTotalPrice()
 }
 
 function updateTotalPrice() {
@@ -61,7 +94,9 @@ function renderCheckout() {
             <h4 id="total-price-text">Total Price:</h4>
             <h5 id="total-price">$${updateTotalPrice()}</h5>
         </div>
+        <button class="purchase-btn" id="purchase-btn" >Complete order</button>
     `
+    orderDertails.style.display = "none"
     checkoutEl.style.display = 'block'
 }
 //GetMenuHTML() -  will fetch the information from menuArray in data.js
