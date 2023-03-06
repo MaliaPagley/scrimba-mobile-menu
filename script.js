@@ -3,7 +3,7 @@ const checkoutEl = document.getElementById('checkout')
 const formEl = document.getElementById('form-el')
 const modalContainer = document.getElementById('modal-container')
 const customerName = document.getElementById('customer-name')
-const orderDertails = document.getElementById('order-dertails')
+const orderDetails = document.getElementById('order-dertails')
 
 document.addEventListener('click', function(e) {
     if(/\d/.test(e.target.id)){
@@ -32,10 +32,10 @@ function renderOrderDetails(){
    
     modalContainer.style.display = 'none'
     checkoutEl.style.display = 'none'
-    orderDertails.innerHTML = `
+    orderDetails.innerHTML = `
     Thanks, ${customerName.value}! Your order is on its way!
     `
-    orderDertails.style.display = "block"
+    orderDetails.style.display = "block"
     orderArr = []
 } 
 
@@ -96,7 +96,7 @@ function renderCheckout() {
         </div>
         <button class="purchase-btn" id="purchase-btn" >Complete order</button>
     `
-    orderDertails.style.display = "none"
+    orderDetails.style.display = "none"
     checkoutEl.style.display = 'block'
 }
 //GetMenuHTML() -  will fetch the information from menuArray in data.js
